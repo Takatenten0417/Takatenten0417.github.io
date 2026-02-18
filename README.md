@@ -3,8 +3,7 @@
 面接用ポートフォリオとして、オノマトペ（擬音語）による主観評価データをPCAで2次元配置し、  
 「高級感のある音の方向性」を分かりやすく見せるWebサイトです。
 
-- デモ（GitHub Pages）：https://<あなたのユーザー名>.github.io/<リポジトリ名>/
-- 要旨PDF：`assets/soturon_draft.pdf`
+- 要旨PDF：`soturon_draft.pdf`
 
 ---
 
@@ -32,18 +31,3 @@
 
 - HTML / CSS / JavaScript（静的サイト）
 - GitHub Pages（ホスティング）
-
----
-
-## セットアップ（ローカルで確認）
-
-このサイトは静的ファイルだけで動きます。
-
-### 方法A：そのままブラウザで開く
-`index.html` をダブルクリック（環境によっては画像が表示されない場合あり）
-
-### 方法B：ローカルサーバで開く（推奨）
-Pythonが入っていれば下記でOK：
-
-```bash
-python -m http.server 8000
