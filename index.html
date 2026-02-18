@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>オノマトペマップで可視化するPSD駆動音の高級感</title>
+  <style>
+    :root { --bg:#0b0c10; --card:#11131a; --text:#e8eaf0; --muted:#b6bccd; --accent:#7aa2ff; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background:var(--bg); color:var(--text); }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 16px 64px; }
+    .hero { padding: 28px 0 8px; }
+    .title { font-size: 28px; line-height: 1.25; margin: 0 0 10px; }
+    .subtitle { color: var(--muted); margin: 0 0 16px; }
+    .btns { display:flex; gap:12px; flex-wrap: wrap; margin: 16px 0 0; }
+    .btn {
+      display:inline-flex; align-items:center; gap:10px;
+      background: #1a1f2c; border:1px solid #2a3247;
+      padding: 10px 14px; border-radius: 12px;
+    }
+    .btn.primary { background: #243257; border-color:#324a86; }
+    .grid { display:grid; gap:14px; grid-template-columns: 1fr; margin-top: 16px; }
+    @media (min-width: 860px){ .grid { grid-template-columns: 1.2fr 0.8fr; } }
+    .card { background: var(--card); border: 1px solid #1d2230; border-radius: 16px; padding: 16px; }
+    .card h2 { font-size: 16px; margin: 0 0 8px; }
+    .card p, .card li { color: var(--muted); line-height: 1.7; }
+    .tabs { display:flex; gap:10px; flex-wrap: wrap; margin: 8px 0 12px; }
+    .tab { cursor:pointer; padding: 8px 12px; border-radius: 999px; border:1px solid #2a3247; background:#151824; color: var(--text); }
+    .tab.active { background:#243257; border-color:#324a86; }
+    .figure { margin-top: 10px; }
+    .figure img {
+      width: 100%; height: auto; border-radius: 12px; border: 1px solid #242a3b;
+      background: #0d0f16;
+    }
+    .caption { margin-top: 10px; font-size: 13px; color: var(--muted); }
+    .kpi { display:grid; gap:10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .kpi .box { border:1px solid #222a3d; border-radius: 14px; padding: 12px; background:#121524; }
+    .kpi .num { font-size: 18px; color: var(--text); margin-bottom: 2px; }
+    .kpi .lbl { font-size: 12px; color: var(--muted); }
+    footer { margin-top: 24px; color: var(--muted); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1 class="title">オノマトペマップで可視化するPSD駆動音の高級感</h1>
+      <p class="subtitle">
+        235種類の音源×111名の主観評価を、オノマトペ（擬音語）からPCAで2次元に配置し、
+        「高級感のある音の方向性」を可視化しました。
+      </p>
+      <div class="btns">
+        <a class="btn primary" href="#maps">図を見る</a>
+        <a class="btn" href="assets/soturon_draft.pdf" target="_blank" rel="noreferrer">PDF（要旨）を見る</a>
+        <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card" id="maps">
+        <h2>オノマトペマップ</h2>
+        <div class="tabs">
+          <button class="tab active" data-target="pca">PCAベクトル図</button>
+          <button class="tab" data-target="cluster">クラスタ（k=4）</button>
+        </div>
+
+        <div class="figure" id="view-pca">
+          <img src="assets/onomatopemap_v4.png" alt="オノマトペPCAマップ（ベクトル図）" />
+          <div class="caption">
+            PC1は「力強さ・重厚さ ↔ 心地よさ・自然さ」、PC2は「鋭さ・規則性 ↔ 鈍さ・不規則性」の軸として解釈。
+          </div>
+        </div>
+
+        <div class="figure" id="view-cluster" style="display:none;">
+          <img src="assets/onomatope_cluster_v3.png" alt="オノマトペPCAマップ（k=4クラスタ、高級感平均）" />
+          <div class="caption">
+            クラスタリングにより高級感の“質”が分かれ、特に高級感が高い領域が2方向（鋭くクリア／静かで滑らか）に現れました。
+          </div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <h2>要点（人事向け）</h2>
+        <ul>
+          <li>音の印象を「オノマトペ」で定量化し、設計・評価に使える形へ。</li>
+          <li>高級感は1種類ではなく、少なくとも<strong>2つの方向性</strong>（鋭くクリア／静かで滑らか）に分かれる。</li>
+          <li>「評価→可視化→示唆」という流れを、説明可能な形でまとめた。</li>
+        </ul>
+
+        <div class="kpi">
+          <div class="box">
+            <div class="num">235</div>
+            <div class="lbl">音源数</div>
+          </div>
+          <div class="box">
+            <div class="num">111</div>
+            <div class="lbl">被験者数</div>
+          </div>
+          <div class="box">
+            <div class="num">PC1 51.7%</div>
+            <div class="lbl">寄与率（図の表記）</div>
+          </div>
+          <div class="box">
+            <div class="num">PC2 28.6%</div>
+            <div class="lbl">寄与率（図の表記）</div>
+          </div>
+        </div>
+
+        <p style="margin-top:12px;">
+          詳細：<a href="assets/soturon_draft.pdf" target="_blank" rel="noreferrer">要旨PDF</a>
+        </p>
+      </aside>
+    </section>
+
+    <footer>
+      <div>© Your Name / Portfolio</div>
+      <div>Keywords: PCA / Clustering / Kansei Engineering / Onomatopoeia</div>
+    </footer>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll(".tab");
+    const viewPca = document.getElementById("view-pca");
+    const viewCluster = document.getElementById("view-cluster");
+
+    tabs.forEach(t => t.addEventListener("click", () => {
+      tabs.forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+
+      const target = t.dataset.target;
+      if (target === "pca") {
+        viewPca.style.display = "";
+        viewCluster.style.display = "none";
+      } else {
+        viewPca.style.display = "none";
+        viewCluster.style.display = "";
+      }
+    }));
+  </script>
+</body>
+</html>
